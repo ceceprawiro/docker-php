@@ -1,7 +1,7 @@
 version: "3.1"
 services:
     db:
-        container_name: symfony-db
+        container_name: application-db
         image: mariadb
         restart: always
         working_dir: /application
@@ -9,21 +9,21 @@ services:
             - .:/application
         environment:
             - MYSQL_ROOT_PASSWORD=secret
-            - MYSQL_DATABASE=symfony
-            - MYSQL_USER=symfony
+            - MYSQL_DATABASE=application
+            - MYSQL_USER=application
             - MYSQL_PASSWORD=secret            
         ports:
         - "8083:3306"
 
     adminer:
-        container_name: symfony-adminer
+        container_name: application-adminer
         image: adminer
         restart: always
         ports:
             - 8000:8080
 
     web:
-        container_name: symfony-web
+        container_name: application-web
         image: nginx:alpine
         working_dir: /application
         volumes:
@@ -33,7 +33,7 @@ services:
             - 8080:80
 
     php:
-        container_name: symfony-php
+        container_name: application-php
         build: docker/php-fpm
         volumes:
             - .:/application
