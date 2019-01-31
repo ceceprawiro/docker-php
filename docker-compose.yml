@@ -3,7 +3,6 @@ services:
     db:
         container_name: application-db
         image: mariadb
-        restart: always
         working_dir: /application
         volumes:
             - .:/application
@@ -18,7 +17,6 @@ services:
     adminer:
         container_name: application-adminer
         image: adminer
-        restart: always
         ports:
             - 8000:8080
 
