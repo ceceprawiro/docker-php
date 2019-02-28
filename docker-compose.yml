@@ -5,7 +5,7 @@ services:
         image: mariadb
         working_dir: /application
         volumes:
-            - .:/application
+            - .database:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=secret
             - MYSQL_DATABASE=application
